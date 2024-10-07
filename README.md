@@ -110,8 +110,16 @@ mkdir -p /mnt/efs
 ```
 
 ### Auto Scaling:
-Novamente no serviço EC2, deve-se ir na parte de Auto Scaling, para poder haver 2 instâncias em execução.
-
+Novamente no serviço EC2, deve-se ir na parte de Auto Scaling, para poder haver 2 instâncias em execução:  
+![16](https://github.com/user-attachments/assets/26c6da6d-8525-4ed0-91ba-5eeca982ead0)  
+![17](https://github.com/user-attachments/assets/d43417f9-84d2-4bea-a0bd-15aaff19392e)  
+![18](https://github.com/user-attachments/assets/3da51d94-5fcb-4d9f-abbe-a03952ad1f06)  
+![19](https://github.com/user-attachments/assets/09d8a540-7c58-4aa1-abe7-74a677d59a7d)  
+![20](https://github.com/user-attachments/assets/82aef31a-0baa-42b0-bd45-d4d3182487f4)  
+![21](https://github.com/user-attachments/assets/98df34d5-b4f7-4eef-934e-e433c25ba743)  
+![22](https://github.com/user-attachments/assets/4266e15f-b356-4743-946a-532e1c25b989)  
+![23](https://github.com/user-attachments/assets/072745eb-9cae-4e22-b716-2b92976e1d70)  
+![24](https://github.com/user-attachments/assets/7317f369-b90f-49fe-a2d7-17ffbf143b54)  
 
 # Últimos Passos:
 Agora, o auto scaling deve ter criado duas instâncias.
@@ -173,6 +181,8 @@ Essa é a tela que irá aparecer no primeiro acesso:
 ![98](https://github.com/user-attachments/assets/6bb7684a-75af-4b6e-8711-45128c2caa33)  
 Após alguns passos a tela de login estará disponível:
 ![99](https://github.com/user-attachments/assets/1f7286b2-f3bc-4794-a740-a3139f8c324b)
+
+# FIM!
 
 
 
