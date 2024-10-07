@@ -27,13 +27,15 @@ Ponto adicional para o trabalho utilizar a instalação via script de Start Inst
 
 ### Criação de uma VPC:
 No serviço de VPC da Amazon AWS, acessar: Suas VPCs > Criar VPC.
-Seguir a criação da VPC de acordo com as imagens a seguir:
+Seguir a criação da VPC de acordo com as imagens a seguir:  
 ![1](https://github.com/user-attachments/assets/4d3fbac2-7b7f-4a11-8f9f-d711a035a846)  
 ![2](https://github.com/user-attachments/assets/f86a5942-9677-441d-b2d0-c86021c54d9c)  
 Após a criação da VPC, o mapa de recursos deve ficar da seguinte forma:  
 ![3](https://github.com/user-attachments/assets/f89809eb-37ca-4fa5-ad34-fc67931ccce1)  
 ### Criação dos Grupos de Segurança: 
 Foram criados 4 Grupos de segurança através do serviço EC2:  
+![6](https://github.com/user-attachments/assets/38f8d0bb-4696-4aca-b7c8-476b69e0f802)  
+Cada grupo foi definido com suas respectivas regras de entrada e saída.  
 
 ### Load Balancer:
 Pelo Serviço de EC2, deve-se ir a parte de Load Balancer e criar um Load Balancer, conforme as imagens:  
@@ -54,10 +56,20 @@ No serviço EC2, em grupos de destinos, se clica em criar grupo de destino
 
 ### Banco de Dados Wordpress (RDS):
 No serviço RDS da amazon, deve-se seguir estes passos  para a criação de uma database:
-Criar banco de dados:
-
+Criar banco de dados:  
+![7](https://github.com/user-attachments/assets/fe31c95e-05af-4155-a890-eb7ddb711dcd)  
+![8](https://github.com/user-attachments/assets/550b4ec3-dbdd-4950-a304-2671d77e57b2)  
+![9](https://github.com/user-attachments/assets/83e4bbea-29cc-4a71-96b8-b5cac23691fe)  
+![10](https://github.com/user-attachments/assets/b06cff22-2a2e-4462-abf5-be1cea08b2e0)  
+![11](https://github.com/user-attachments/assets/da08c94a-e04c-4487-8a45-7dbff5040232)  
+![12](https://github.com/user-attachments/assets/d0a11564-f8e3-4a90-ad57-82aa3c991741)  
+![13](https://github.com/user-attachments/assets/c2a6a581-ff99-43dc-be8c-ee34e37df66b)  
 ### EFS
-Acessar o serviço EFS e criar um sistema de arquivos.
+Acessar o serviço EFS e criar um sistema de arquivos:  
+![14](https://github.com/user-attachments/assets/bc7e4c07-c6ed-4de0-bf92-16226b5fd281)  
+Deverá ser anexado esse comando no terminal das instâncias ec2:
+![15](https://github.com/user-attachments/assets/85b89e10-b5a6-4ae5-8d7f-9f1e2a4bf80b)  
+
 
 ### Modelos de Execução:
 Se faz necessário criar um modelo de execução para que posteriormente seja possível criar um Auto Scaling.
