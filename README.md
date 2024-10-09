@@ -77,36 +77,81 @@ Dentro da imagem, foi implementado o script:
 
 # Script de Instalação
 
-Este script instala o Docker, Docker Compose e configura NFS e Amazon EFS utilities.
+Este script instala o Docker, Docker Compose,
+configura NFS, Amazon EFS utilities, anexa o EFS e inicia o container.
 
-```bash
+```
 #!/bin/bash
 # Atualiza todos os pacotes
+echo "Atualizando pacotes..."
 yum update -y
 
 # Instala o Docker
+echo "Instalando o Docker..."
 amazon-linux-extras install docker -y
 
 # Habilita e inicia o serviço Docker
+echo "Habilitando e iniciando o serviço Docker..."
 systemctl enable docker
 systemctl start docker
 
 # Adiciona o usuário ec2-user ao grupo docker
+echo "Adicionando o usuário ec2-user ao grupo docker..."
 usermod -aG docker ec2-user
 
 # Instala o Docker Compose
 DOCKER_COMPOSE_VERSION="1.29.2"
+echo "Instalando o Docker Compose versão $DOCKER_COMPOSE_VERSION..."
 curl -L "https://github.com/docker/compose/releases/download/$DOCKER_COMPOSE_VERSION/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # Reinicia o Docker para garantir que as configurações sejam aplicadas
+echo "Reiniciando o serviço Docker..."
 systemctl restart docker
 
 # Instala NFS e Amazon EFS utilities
+echo "Instalando nfs-utils e amazon-efs-utils..."
 yum install -y nfs-utils amazon-efs-utils
 
 # Cria o diretório para EFS
+echo "Criando diretório /mnt/efs..."
 mkdir -p /mnt/efs
+
+# Monta o EFS
+echo "Montando o EFS..."
+sudo mount -t efs -o tls fs-0867e43994669bc80:/ /mnt/efs
+
+# Cria o arquivo docker-compose.yml
+echo "Criando o arquivo docker-compose.yml..."
+cat <<EOF > /home/ec2-user/docker-compose.yml
+version: '3.8'
+
+services:
+  wordpress:
+    image: wordpress
+    container_name: wordpress
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: "wordpress.c9o2wakgs2z6.us-east-1.rds.amazonaws.com"  # Endpoint do RDS
+      WORDPRESS_DB_USER: "wordpress"  # Usuário do RDS
+      WORDPRESS_DB_PASSWORD: "wordpress"  # Senha do RDS
+      WORDPRESS_DB_NAME: "wordpress"  # Nome do banco de dados
+      TZ: "America/Sao_Paulo"
+    volumes:
+      - /mnt/efs:/var/www/html
+    networks:
+      - wp-network
+
+networks:
+  wp-network:
+    driver: bridge
+EOF
+
+# Inicia o contêiner com Docker Compose
+echo "Iniciando o contêiner WordPress com Docker Compose..."
+docker-compose -f /home/ec2-user/docker-compose.yml up -d
+
 ```
 
 ### Auto Scaling:
